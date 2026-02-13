@@ -53,7 +53,7 @@ export function Header({ onEditProfile }: HeaderProps) {
             />
           </svg>
         </div>
-        <span className="text-lg font-semibold text-white">To Do App</span>
+        <span className="text-lg font-semibold text-white">ToDo App</span>
       </div>
 
       <div className="relative" ref={dropdownRef}>
