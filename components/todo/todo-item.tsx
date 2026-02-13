@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { Todo } from "@/types/todo";
+import { DEFAULT_CATEGORIES } from "@/types/todo";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
@@ -38,6 +39,7 @@ export function TodoItem({
   };
 
   const createdDate = new Date(todo.createdAt);
+  const category = todo.categoryId ? DEFAULT_CATEGORIES.find((c) => c.id === todo.categoryId) : null;
 
   return (
     <li className="group flex items-start gap-3 rounded-lg border border-zinc-100 bg-zinc-50/80 px-3 py-2 text-sm shadow-sm transition-colors hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:bg-zinc-900">
@@ -78,18 +80,26 @@ export function TodoItem({
           </button>
         )}
 
-        <p className="text-xs text-zinc-400">
-          Created&nbsp;
-          {createdDate.toLocaleDateString(undefined, {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          })}
-          &nbsp;at&nbsp;
-          {createdDate.toLocaleTimeString(undefined, {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
+        <p className="flex items-center gap-2 text-xs text-zinc-400">
+          {category && (
+            <span className={cn("inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs", category.color, "bg-opacity-20 text-zinc-600 dark:text-zinc-300")}>
+              <span>{category.icon}</span>
+              <span>{category.name}</span>
+            </span>
+          )}
+          <span>
+            Created&nbsp;
+            {createdDate.toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+            &nbsp;at&nbsp;
+            {createdDate.toLocaleTimeString(undefined, {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
         </p>
       </div>
 
