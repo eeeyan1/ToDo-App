@@ -71,8 +71,8 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-900">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-white/20 border-t-white" />
+      <div className="flex min-h-screen items-center justify-center bg-zinc-100 dark:bg-zinc-900">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-300 border-t-zinc-900 dark:border-white/20 dark:border-t-white" />
       </div>
     );
   }
@@ -132,7 +132,7 @@ export default function Home() {
       {/* Mobile sidebar toggle */}
       <button
         onClick={() => setSidebarOpen(true)}
-        className="fixed left-4 top-20 z-20 rounded-lg bg-black/40 p-2 text-white backdrop-blur-md transition-colors hover:bg-black/60 lg:hidden"
+        className="fixed left-4 top-20 z-20 rounded-lg bg-white/80 p-2 text-zinc-700 shadow-md backdrop-blur-md transition-colors hover:bg-white dark:bg-black/40 dark:text-white dark:hover:bg-black/60 lg:hidden"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -154,11 +154,11 @@ export default function Home() {
           {/* View Header */}
           <header className="mb-6 space-y-4">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <h1 className="text-2xl font-semibold tracking-tight text-white">
+              <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">
                 {getViewTitle()}
               </h1>
             </div>
-            <p className="text-sm text-zinc-300">
+            <p className="text-sm text-zinc-600 dark:text-zinc-300">
               {selectedCategory === null
                 ? "Tasks scheduled for today. Past uncompleted tasks won't appear here."
                 : selectedCategory === "all"
@@ -177,31 +177,33 @@ export default function Home() {
 
           {/* Main Card */}
           <Card className="space-y-4 border-white/20 bg-white/60 shadow-xl shadow-black/30 backdrop-blur-xl dark:border-white/15 dark:bg-black/40">
-            {/* Add Todo Form */}
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                Name your To-do for the day.
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <div className="flex flex-1 gap-2">
-                  <CategorySelector
-                    value={newTodoCategory}
-                    onChange={setNewTodoCategory}
-                    compact
-                  />
-                  <Input
-                    placeholder="Add a new to-do and press Enter…"
-                    value={newTodo}
-                    onChange={(e) => setNewTodo(e.target.value)}
-                    aria-label="New to-do"
-                    className="flex-1"
-                  />
+            {/* Add Todo Form - hidden in "All Tasks" view */}
+            {selectedCategory !== "all" && (
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <p className="text-sm text-zinc-600 dark:text-zinc-300">
+                  Name your To-do for the day.
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <div className="flex flex-1 gap-2">
+                    <CategorySelector
+                      value={newTodoCategory}
+                      onChange={setNewTodoCategory}
+                      compact
+                    />
+                    <Input
+                      placeholder="Add a new to-do and press Enter…"
+                      value={newTodo}
+                      onChange={(e) => setNewTodo(e.target.value)}
+                      aria-label="New to-do"
+                      className="flex-1"
+                    />
+                  </div>
+                  <Button type="submit" className="shrink-0 sm:w-28">
+                    Add
+                  </Button>
                 </div>
-                <Button type="submit" className="shrink-0 sm:w-28">
-                  Add
-                </Button>
-              </div>
-            </form>
+              </form>
+            )}
 
             {/* Todo List */}
             <TodoList

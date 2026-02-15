@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useUser } from "@/contexts/user-context";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
@@ -37,7 +38,7 @@ export function Header({ onEditProfile }: HeaderProps) {
     .slice(0, 2);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between border-b border-white/10 bg-black/30 px-4 backdrop-blur-md sm:px-6">
+    <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between border-b border-zinc-200 bg-white/80 px-4 backdrop-blur-md dark:border-white/10 dark:bg-black/30 sm:px-6">
       <div className="flex items-center gap-3">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-white">
           <svg
@@ -53,26 +54,28 @@ export function Header({ onEditProfile }: HeaderProps) {
             />
           </svg>
         </div>
-        <span className="text-lg font-semibold text-white">ToDo App</span>
+        <span className="text-lg font-semibold text-zinc-900 dark:text-white">ToDo App</span>
       </div>
 
-      <div className="relative" ref={dropdownRef}>
+      <div className="flex items-center gap-4">
+        <ThemeToggle />
+        <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
-          className="flex items-center gap-2 rounded-full p-1 transition-colors hover:bg-white/10"
+          className="flex items-center gap-2 rounded-full p-1 transition-colors hover:bg-zinc-100 dark:hover:bg-white/10"
         >
           {user.avatarUrl ? (
             <img
               src={user.avatarUrl}
               alt={user.username}
-              className="h-9 w-9 rounded-full object-cover ring-2 ring-white/20"
+              className="h-9 w-9 rounded-full object-cover ring-2 ring-zinc-200 dark:ring-white/20"
             />
           ) : (
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 text-sm font-medium text-white ring-2 ring-white/20">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 text-sm font-medium text-white ring-2 ring-zinc-200 dark:ring-white/20">
               {initials}
             </div>
           )}
-          <span className="hidden text-sm font-medium text-white sm:block">
+          <span className="hidden text-sm font-medium text-zinc-900 dark:text-white sm:block">
             {user.username}
           </span>
           <svg
@@ -80,7 +83,7 @@ export function Header({ onEditProfile }: HeaderProps) {
             viewBox="0 0 20 20"
             fill="currentColor"
             className={cn(
-              "h-4 w-4 text-white/70 transition-transform",
+              "h-4 w-4 text-zinc-500 dark:text-white/70 transition-transform",
               dropdownOpen && "rotate-180"
             )}
           >
@@ -93,17 +96,17 @@ export function Header({ onEditProfile }: HeaderProps) {
         </button>
 
         {dropdownOpen && (
-          <div className="absolute right-0 top-full mt-2 w-48 origin-top-right rounded-lg border border-white/10 bg-zinc-900/95 py-1 shadow-xl backdrop-blur-md">
-            <div className="border-b border-white/10 px-4 py-2">
-              <p className="text-sm font-medium text-white">{user.username}</p>
-              <p className="text-xs text-zinc-400">{user.email}</p>
+          <div className="absolute right-0 top-full mt-2 w-48 origin-top-right rounded-lg border border-zinc-200 bg-white/95 py-1 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-zinc-900/95">
+            <div className="border-b border-zinc-200 px-4 py-2 dark:border-white/10">
+              <p className="text-sm font-medium text-zinc-900 dark:text-white">{user.username}</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">{user.email}</p>
             </div>
             <button
               onClick={() => {
                 setDropdownOpen(false);
                 onEditProfile();
               }}
-              className="flex w-full items-center gap-2 px-4 py-2 text-sm text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"
+              className="flex w-full items-center gap-2 px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +124,7 @@ export function Header({ onEditProfile }: HeaderProps) {
                 setDropdownOpen(false);
                 signOut();
               }}
-              className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-400 transition-colors hover:bg-white/10 hover:text-red-300"
+              className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-500 transition-colors hover:bg-red-50 hover:text-red-600 dark:text-red-400 dark:hover:bg-white/10 dark:hover:text-red-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -144,6 +147,7 @@ export function Header({ onEditProfile }: HeaderProps) {
             </button>
           </div>
         )}
+        </div>
       </div>
     </header>
   );
