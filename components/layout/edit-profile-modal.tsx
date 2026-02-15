@@ -71,10 +71,10 @@ export function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-md rounded-xl border border-white/10 bg-zinc-900/95 p-6 shadow-2xl backdrop-blur-md">
+      <div className="relative w-full max-w-md rounded-xl border border-zinc-200 bg-white/95 p-6 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-zinc-900/95">
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-lg p-1 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
+          className="absolute right-4 top-4 rounded-lg p-1 text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ export function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
           </svg>
         </button>
 
-        <h2 className="mb-6 text-xl font-semibold text-white">Edit Profile</h2>
+        <h2 className="mb-6 text-xl font-semibold text-zinc-900 dark:text-white">Edit Profile</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="flex flex-col items-center gap-4">
@@ -95,10 +95,10 @@ export function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
                 <img
                   src={previewUrl}
                   alt="Profile preview"
-                  className="h-24 w-24 rounded-full object-cover ring-4 ring-white/10"
+                  className="h-24 w-24 rounded-full object-cover ring-4 ring-zinc-200 dark:ring-white/10"
                 />
               ) : (
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 text-2xl font-semibold text-white ring-4 ring-white/10">
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 text-2xl font-semibold text-white ring-4 ring-zinc-200 dark:ring-white/10">
                   {initials || "?"}
                 </div>
               )}
@@ -116,7 +116,7 @@ export function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
                 variant="outline"
                 size="sm"
                 onClick={() => fileInputRef.current?.click()}
-                className="border-white/20 bg-white/5 text-white hover:bg-white/10"
+                className="border-zinc-200 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-white/20 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 Upload Photo
               </Button>
@@ -126,7 +126,7 @@ export function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
                   variant="ghost"
                   size="sm"
                   onClick={handleRemoveAvatar}
-                  className="text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                  className="text-red-500 hover:bg-red-50 hover:text-red-600 dark:text-red-400 dark:hover:bg-red-500/10 dark:hover:text-red-300"
                 >
                   Remove
                 </Button>
@@ -135,7 +135,7 @@ export function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="username" className="block text-sm font-medium text-zinc-300">
+            <label htmlFor="username" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Username
             </label>
             <Input
@@ -143,18 +143,18 @@ export function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your username"
-              className="border-white/20 bg-white/5 text-white placeholder:text-zinc-500"
+              className="border-zinc-200 bg-white text-zinc-900 placeholder:text-zinc-500 dark:border-white/20 dark:bg-white/5 dark:text-white"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-zinc-300">
+            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Email
             </label>
             <Input
               value={user?.email || ""}
               disabled
-              className="border-white/10 bg-white/5 text-zinc-500"
+              className="border-zinc-200 bg-zinc-100 text-zinc-500 dark:border-white/10 dark:bg-white/5"
             />
             <p className="text-xs text-zinc-500">Email cannot be changed</p>
           </div>
@@ -164,7 +164,7 @@ export function EditProfileModal({ isOpen, onClose }: EditProfileModalProps) {
               type="button"
               variant="outline"
               onClick={onClose}
-              className="flex-1 border-white/20 bg-white/5 text-white hover:bg-white/10"
+              className="flex-1 border-zinc-200 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-white/20 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               Cancel
             </Button>

@@ -29,7 +29,7 @@ export function Tabs({ value, onValueChange, children, className }: TabsProps) {
 }
 
 interface TabsTriggerProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onSelect"> {
   value: string;
   selectedValue?: string;
   onSelect?: (value: string) => void;
