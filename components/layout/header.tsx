@@ -40,7 +40,7 @@ export function Header({ onEditProfile }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between border-b border-zinc-200 bg-white/80 px-4 backdrop-blur-md dark:border-white/10 dark:bg-black/30 sm:px-6">
       <div className="flex items-center gap-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-white">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-500 text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

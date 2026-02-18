@@ -149,16 +149,16 @@ export default function Home() {
       </button>
 
       {/* Main Content */}
-      <main className="pt-16 lg:pl-64">
+      <main className="pt-16 lg:pl-80">
         <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
           {/* View Header */}
           <header className="mb-6 space-y-4">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+              <h1 className="text-2xl font-semibold tracking-tight text-white">
                 {getViewTitle()}
               </h1>
             </div>
-            <p className="text-sm text-zinc-600 dark:text-zinc-300">
+            <p className="text-sm text-white/80">
               {selectedCategory === null
                 ? "Tasks scheduled for today. Past uncompleted tasks won't appear here."
                 : selectedCategory === "all"

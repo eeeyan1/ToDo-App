@@ -36,7 +36,7 @@ export function Sidebar({
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 transform border-r border-zinc-200 bg-white/80 backdrop-blur-md transition-transform duration-300 dark:border-white/10 dark:bg-black/40 lg:translate-x-0",
+          "fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-100 transform border-r border-zinc-200 bg-white/80 backdrop-blur-md transition-transform duration-300 dark:border-white/10 dark:bg-black/40 lg:translate-x-0",
           isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
@@ -46,13 +46,13 @@ export function Sidebar({
             <button
               onClick={() => onSelectCategory(null)}
               className={cn(
-                "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors",
+                "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xl font-medium transition-colors",
                 selectedCategory === null
                   ? "bg-zinc-200 text-zinc-900 dark:bg-white/15 dark:text-white"
                   : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white"
               )}
             >
-              <span className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-amber-400 to-orange-500 text-xs">
+              <span className="flex h-6 w-6 items-center justify-center rounded-md bg-zinc-500 text-xs">
                 📅
               </span>
               <span className="flex-1">Today</span>
@@ -65,13 +65,13 @@ export function Sidebar({
             <button
               onClick={() => onSelectCategory("all")}
               className={cn(
-                "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors",
+                "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xl font-medium transition-colors",
                 selectedCategory === "all"
                   ? "bg-zinc-200 text-zinc-900 dark:bg-white/15 dark:text-white"
                   : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white"
               )}
             >
-              <span className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-zinc-500 to-zinc-600 text-xs">
+              <span className="flex h-6 w-6 items-center justify-center rounded-md bg-zinc-500 text-xs">
                 📋
               </span>
               <span className="flex-1">All Tasks</span>
@@ -94,17 +94,14 @@ export function Sidebar({
                 key={category.id}
                 onClick={() => onSelectCategory(category.id)}
                 className={cn(
-                  "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors",
+                  "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xl font-medium transition-colors",
                   selectedCategory === category.id
                     ? "bg-zinc-200 text-zinc-900 dark:bg-white/15 dark:text-white"
                     : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white"
                 )}
               >
                 <span
-                  className={cn(
-                    "flex h-6 w-6 items-center justify-center rounded-md text-xs",
-                    category.color
-                  )}
+                  className="flex h-6 w-6 items-center justify-center rounded-md bg-zinc-500 text-xs"
                 >
                   {category.icon}
                 </span>

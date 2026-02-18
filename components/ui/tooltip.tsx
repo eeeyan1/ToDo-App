@@ -34,7 +34,7 @@ export function TooltipTrigger({
   children,
   "aria-label": ariaLabel,
 }: {
-  children: React.ReactElement;
+  children: React.ReactElement<React.HTMLAttributes<HTMLElement>>;
   "aria-label"?: string;
 }) {
   const ctx = React.useContext(TooltipContext);
@@ -43,25 +43,25 @@ export function TooltipTrigger({
   const { setOpen, open } = ctx;
 
   return React.cloneElement(children, {
-    onMouseEnter: (event: React.MouseEvent) => {
+    onMouseEnter: (event: React.MouseEvent<HTMLElement>) => {
       children.props.onMouseEnter?.(event);
       setOpen(true);
     },
-    onMouseLeave: (event: React.MouseEvent) => {
+    onMouseLeave: (event: React.MouseEvent<HTMLElement>) => {
       children.props.onMouseLeave?.(event);
       setOpen(false);
     },
-    onFocus: (event: React.FocusEvent) => {
+    onFocus: (event: React.FocusEvent<HTMLElement>) => {
       children.props.onFocus?.(event);
       setOpen(true);
     },
-    onBlur: (event: React.FocusEvent) => {
+    onBlur: (event: React.FocusEvent<HTMLElement>) => {
       children.props.onBlur?.(event);
       setOpen(false);
     },
     "aria-label": ariaLabel ?? children.props["aria-label"],
     "data-tooltip-open": open ? "true" : undefined,
-  });
+  } as React.HTMLAttributes<HTMLElement>);
 }
 
 export function TooltipContent({
