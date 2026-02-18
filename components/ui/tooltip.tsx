@@ -30,11 +30,21 @@ export function Tooltip({
   );
 }
 
+type TriggerChildProps = {
+  onMouseEnter?: (event: React.MouseEvent) => void;
+  onMouseLeave?: (event: React.MouseEvent) => void;
+  onFocus?: (event: React.FocusEvent) => void;
+  onBlur?: (event: React.FocusEvent) => void;
+  "aria-label"?: string;
+  "data-tooltip-open"?: string;
+  [key: string]: unknown;
+};
+
 export function TooltipTrigger({
   children,
   "aria-label": ariaLabel,
 }: {
-  children: React.ReactElement;
+  children: React.ReactElement<TriggerChildProps>;
   "aria-label"?: string;
 }) {
   const ctx = React.useContext(TooltipContext);
